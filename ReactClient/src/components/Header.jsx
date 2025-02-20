@@ -1,50 +1,65 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 
 const Header = () => {
+  const [position, setPosition] = useState({
+     left: 0,
+     width: 0,
+     opacity: 0,
+    });
+
+
   return (
-    <div>
-      <nav className="bg-gray-800 p-4">
-        <ul className="flex space-x-4">
-          <li>
-            <NavLink 
-              to="/" 
-              className={({ isActive }) =>
-                isActive 
-                  ? "text-white font-bold" 
-                  : "text-gray-300 hover:text-white"
-              }
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink 
-              to="/pageFort"
-              className={({ isActive }) =>
-                isActive 
-                  ? "text-white font-bold" 
-                  : "text-gray-300 hover:text-white"
-              }
-            >
-              PageFort
-            </NavLink>
-          </li>
-          <li>
-            <NavLink 
-              to="/pageNite"
-              className={({ isActive }) =>
-                isActive 
-                  ? "text-white font-bold" 
-                  : "text-gray-300 hover:text-white"
-              }
-            >
-              PageNite
-            </NavLink>
-          </li>
-        </ul>
-      </nav>
+    <div className="pt-3">
+      <ul 
+      onMouseLeave={() => setPosition({ ...position, opacity: 0 })}
+      className="relative mx-auto flex w-fit rounded-full border-2 border-black bg-white p-1">
+        <Tab setPosition={setPosition}>
+          <NavLink to="/">Home</NavLink>
+        </Tab>
+        <Tab setPosition={setPosition}>
+          <NavLink to="/pageFort">PageFort</NavLink>
+        </Tab>
+        <Tab setPosition={setPosition}>
+          <NavLink to="/pageNite">PageNite</NavLink>
+        </Tab>
+        <Cursor position={position} />
+      </ul>
     </div>
+  );
+};
+
+const Tab = ({ children, setPosition }) => {
+  const ref = useRef(null);
+  //this is the size and design of each tab individually letting us change them all at once if needed or reuse them
+  return (
+    <li 
+    ref={ref}
+    onMouseEnter={() => {
+      
+      const {width} = ref.current.getBoundingClientRect();
+
+      setPosition({
+        width,
+        opacity: 1,
+        left: ref.current.offsetLeft,
+      })
+      
+    }}
+    className="relative z-10 block cursor-pointer px-3 py-1.5 text-xs uppercase text-white mix-blend-difference md:px-5 md:py-3 md:text-base">
+      {children}
+    </li>
+  );
+};
+
+const Cursor = ({position}) => {
+  //this is the cursor that follows the mouse
+  return (
+    <motion.li
+    animate={position}
+    className="absolute z-0 h-7 rounded-full bg-black md:h-12"></motion.li>
   );
 };
 
