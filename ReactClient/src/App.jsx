@@ -6,7 +6,6 @@ import Home from "./pages/Home";
 import PageFort from "./pages/pageFort";
 import PageNite from "./pages/pageNite";
 
-
 const AppLayout = () => {
   return (
     <div className="min-h-screen flex flex-col">
