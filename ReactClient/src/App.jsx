@@ -3,8 +3,8 @@ import "./App.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Home from "./pages/Home";
-import PageFort from "./pages/pageFort";
-import PageNite from "./pages/pageNite";
+import PageFort from "./pages/PageFort";
+import PageNite from "./pages/PageNite";
 
 const AppLayout = () => {
   return (

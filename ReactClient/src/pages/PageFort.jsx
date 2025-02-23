@@ -2,7 +2,7 @@ import React from 'react'
 
 const PageFort = () => {
   return (
-    <div>pageFort
+    <div className='h-screen bg-green-500'>pageFort
         BUNKER
     </div>
   )

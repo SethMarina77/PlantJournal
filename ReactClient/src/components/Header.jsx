@@ -12,18 +12,31 @@ const Header = () => {
 
 
   return (
-    <div className="pt-3">
-      <ul 
-      onMouseLeave={() => setPosition({ ...position, opacity: 0 })}
-      className="relative mx-auto flex w-fit rounded-full border-2 border-black bg-white p-1">
+    <div className="pt-3 pb-3">
+      <ul
+        onMouseLeave={() => setPosition({ ...position, opacity: 0 })}
+        className="relative mx-auto flex w-fit rounded-full border-2 border-black bg-white p-1"
+      >
+        <NavLink to="/">
+          <Tab setPosition={setPosition}>Account LookUp/Review</Tab>
+        </NavLink>
+        <NavLink to="/pageFort">
+          <Tab setPosition={setPosition}>Champ TierList</Tab>
+        </NavLink>
+        <NavLink to="/pageNite">
+          <Tab setPosition={setPosition}>Rune TierList</Tab>
+        </NavLink>
+
         <Tab setPosition={setPosition}>
-          <NavLink to="/">Home</NavLink>
+          <p>Item TierList</p>
         </Tab>
+
         <Tab setPosition={setPosition}>
-          <NavLink to="/pageFort">PageFort</NavLink>
+          <p>Net Wins Calculator (give up)</p>
         </Tab>
+
         <Tab setPosition={setPosition}>
-          <NavLink to="/pageNite">PageNite</NavLink>
+          <p>About</p>
         </Tab>
         <Cursor position={position} />
       </ul>
